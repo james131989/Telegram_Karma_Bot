@@ -98,18 +98,25 @@ async def downvote(_, message):
 
 @app.on_message(filters.command(["karma"]))
 async def karma(_, message):
+    user_id = message.reply_to_message.from_user.id
+    chat_id = message.chat.id
+    filename = f"{chat_id}.json"
+    with open(filename) as f2:
+        members = json.load(f2)
     if not message.reply_to_message:
-        chat_id = message.chat.id
-        filename = f"{chat_id}.json"
-        with open(filename) as f2:
-            members = json.load(f2)
         output = ""
         m = 0
         for i in members.keys():
             print(i, m)
-            output += f"`{(await app.get_users(i)).username}: {list(members.values())[m]}`\n"
+            try:
+                output += f"`{(await app.get_chats(i)).username}: {list(members.values())[m]}`\n"
+            except:
+                pass
             m += 1
         await message.reply_text(output)
+
+    else:
+        await message.reply_text(f'Total Points: {members[f"{user_id}"]}')
 
 
 @app.on_message(filters.command(["backup"]) & filters.user(owner_id))
