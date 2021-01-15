@@ -31,15 +31,17 @@ async def help(_, message):
     )
 
 
-@app.on_message(filters.regex(regex_upvote))
+@app.on_message(filters.text
+                & filters.group
+                & filters.incoming
+                & filters.reply
+                & filters.regex(regex_upvote)
+                & ~filters.via_bot
+                & ~filters.bot
+                & ~filters.edited)
 async def upvote(_, message):
     if not message.reply_to_message:
         await message.reply_text("Reply To A Message To Upvote.")
-        return
-    if message.reply_to_message.from_user.id == message.from_user.id:
-        await message.reply_text(
-            "Public masturbation is not allowed."
-        )
         return
 
     chat_id = message.chat.id
@@ -64,15 +66,17 @@ async def upvote(_, message):
     )
 
 
-@app.on_message(filters.regex(regex_downvote))
+@app.on_message(filters.text
+                & filters.group
+                & filters.incoming
+                & filters.reply
+                & filters.regex(regex_downvote)
+                & ~filters.via_bot
+                & ~filters.bot
+                & ~filters.edited)
 async def downvote(_, message):
     if not message.reply_to_message:
         await message.reply_text("Reply To A Message To Downvote.")
-        return
-    if message.reply_to_message.from_user.id == message.from_user.id:
-        await message.reply_text(
-            "Public masturbation is not allowed."
-        )
         return
     chat_id = message.chat.id
     user_id = message.reply_to_message.from_user.id
@@ -96,7 +100,7 @@ async def downvote(_, message):
     )
 
 
-@app.on_message(filters.command(["karma"]))
+@app.on_message(filters.command(["karma"]) & filters.group)
 async def karma(_, message):
     chat_id = message.chat.id
     filename = f"{chat_id}.json"
@@ -121,7 +125,7 @@ async def karma(_, message):
 @app.on_message(filters.command(["backup"]) & filters.user(owner_id))
 async def backup(_, message):
     m = await message.reply_text("Sending..")
-    files = glob.glob("*.json")
+    files = glob.glob("*")
     for i in files:
         await app.send_document(owner_id, i)
     await m.edit("Backup Sent In Your PM")
