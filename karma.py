@@ -125,7 +125,7 @@ async def karma(_, message):
 @app.on_message(filters.command(["backup"]) & filters.user(owner_id))
 async def backup(_, message):
     m = await message.reply_text("Sending..")
-    files = glob.glob("*")
+    files = glob.glob("*n")
     for i in files:
         await app.send_document(owner_id, i)
     await m.edit("Backup Sent In Your PM")
