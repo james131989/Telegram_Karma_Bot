@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from config import bot_token, owner_id
 
 app = Client(
-    ":memory:",
+    "karma",
     bot_token=bot_token,
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
@@ -98,7 +98,6 @@ async def downvote(_, message):
 
 @app.on_message(filters.command(["karma"]))
 async def karma(_, message):
-    user_id = message.reply_to_message.from_user.id
     chat_id = message.chat.id
     filename = f"{chat_id}.json"
     with open(filename) as f2:
@@ -107,15 +106,15 @@ async def karma(_, message):
         output = ""
         m = 0
         for i in members.keys():
-            print(i, m)
             try:
-                output += f"`{(await app.get_chats(i)).username}: {list(members.values())[m]}`\n"
+                output += f"`{(await app.get_chat(i)).username}: {list(members.values())[m]}`\n"
             except:
                 pass
             m += 1
         await message.reply_text(output)
 
     else:
+        user_id = message.reply_to_message.from_user.id
         await message.reply_text(f'Total Points: {members[f"{user_id}"]}')
 
 
