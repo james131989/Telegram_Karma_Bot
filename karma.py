@@ -40,8 +40,7 @@ async def help(_, message):
                 & ~filters.bot
                 & ~filters.edited)
 async def upvote(_, message):
-    if not message.reply_to_message:
-        await message.reply_text("Reply To A Message To Upvote.")
+    if message.reply_to_message.from_user.id == message.from_user.id:
         return
 
     chat_id = message.chat.id
@@ -75,8 +74,7 @@ async def upvote(_, message):
                 & ~filters.bot
                 & ~filters.edited)
 async def downvote(_, message):
-    if not message.reply_to_message:
-        await message.reply_text("Reply To A Message To Downvote.")
+    if message.reply_to_message.from_user.id == message.from_user.id:
         return
     chat_id = message.chat.id
     user_id = message.reply_to_message.from_user.id
