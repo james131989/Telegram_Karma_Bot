@@ -105,7 +105,6 @@ async def karma(_, message):
     with open(filename) as f2:
         members = json.load(f2)
     fmembers = dict(sorted(members.items(), key=operator.itemgetter(1),reverse=True))
-    await message.reply_text(len(fmembers))
     if not message.reply_to_message:
         output = ""
         m = 0
