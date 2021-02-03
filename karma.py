@@ -11,7 +11,7 @@ app = Client(
     api_hash="21340612b889ee4f6cb65c4c4086c644",
 )
 
-regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|good|👍)$"
+regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|good|👍)$"
 regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 
 
@@ -61,7 +61,7 @@ async def upvote(_, message):
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
     await message.reply_text(
-        f'Increased Karma of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
+        f'Incremented Karma of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
 
@@ -94,7 +94,7 @@ async def downvote(_, message):
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
     await message.reply_text(
-        f'Decreased Karma Of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
+        f'Decremented Karma Of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
 import operator
