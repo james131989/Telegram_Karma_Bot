@@ -7,8 +7,8 @@ from config import bot_token, owner_id
 app = Client(
     "karma",
     bot_token=bot_token,
-    api_id=1537108,
-    api_hash="21340612b889ee4f6cb65c4c4086c644",
+    api_id=6,
+    api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
 regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|good|👍)$"
@@ -18,7 +18,7 @@ regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 @app.on_message(filters.command(["start"]))
 async def start(_, message):
     await message.reply_text(
-        "Hey, I'm A reputation Bot, There will be no further explanation. There will just be reputation, You Can increase or decrease Someone Using Me, Join @SwiftiesWorld!"
+        "Hey, I'm A Karma Bot, You Can Upvote Or Downvote Someone Using Me, Join @TheHamkerChat For Support!"
     )
 
 
@@ -110,7 +110,7 @@ async def karma(_, message):
         m = 0
         for i in fmembers.keys():
             try:
-                output += f"`{(await message.get_chat(i)).username}: {list(fmembers.values())[m]}`\n"
+                output += f"`{(await app.get_chat(i)).username}: {list(fmembers.values())[m]}`\n"
             except:
                 pass
             if m == 10:
