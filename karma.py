@@ -110,7 +110,7 @@ async def karma(_, message):
         m = 0
         for i in fmembers.keys():
             try:
-                output += f"`{(await app.get_chat(i)).username}: {list(fmembers.values())[m]}`\n"
+                output += f"`{(await message.get_chat(i)).username}: {list(fmembers.values())[m]}`\n"
             except:
                 pass
             if m == 10:
