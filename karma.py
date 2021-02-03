@@ -60,7 +60,7 @@ async def upvote(_, message):
         members[f"{user_id}"] += 1
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
-    await message(
+    await message.reply_text(
         f'Increased Karma of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
@@ -93,7 +93,7 @@ async def downvote(_, message):
         members[f"{user_id}"] -= 1
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
-    await message(
+    await message.reply_text(
         f'Decreased Karma Of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
