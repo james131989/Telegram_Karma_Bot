@@ -18,7 +18,7 @@ regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 @app.on_message(filters.command(["start"]))
 async def start(_, message):
     await message.reply_text(
-        "Hey, I'm A reputation Bot.\nThere will be no further explanation, There will just be reputation.\nYou Can increase or decrease rep of Someone Using Me./nJoin @SwiftiesWorld./nCreated By @TayLife"
+        "Hey, I'm A reputation Bot.\nThere will be no further explanation, There will just be reputation.\nYou Can increase or decrease rep of Someone Using Me.\nJoin @SwiftiesWorld.\nCreated By @TayLife"
     )
 
 
