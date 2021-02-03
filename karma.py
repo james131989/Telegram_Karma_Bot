@@ -7,18 +7,18 @@ from config import bot_token, owner_id
 app = Client(
     "karma",
     bot_token=bot_token,
-    api_id=6,
-    api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
+    api_id=1537108,
+    api_hash="21340612b889ee4f6cb65c4c4086c644",
 )
 
-regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|good|👍)$"
+regex_upvote = r"^((?i)\+|\+\+|\+1|thx|tnx|ty|thank you|thanx|thanks|pro|cool|good|awesome|👍)$"
 regex_downvote = r"^(\-|\-\-|\-1|👎)$"
 
 
 @app.on_message(filters.command(["start"]))
 async def start(_, message):
     await message.reply_text(
-        "Hey, I'm A Karma Bot, You Can Upvote Or Downvote Someone Using Me, Join @TheHamkerChat For Support!"
+        "Hey, I'm A reputation Bot, There will be no further explanation. There will just be reputation, You Can increase or decrease Someone Using Me, Join @SwiftiesWorld!"
     )
 
 
@@ -61,7 +61,7 @@ async def upvote(_, message):
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
     await message.reply_text(
-        f'Incremented Karma of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
+        f'Increased rep of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
 
@@ -94,7 +94,7 @@ async def downvote(_, message):
     with open(filename, "w") as f3:
         f3.write(json.dumps(members))
     await message.reply_text(
-        f'Decremented Karma Of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
+        f'Decreased rep Of {user_mention} By 1 \nTotal Points: {members[f"{user_id}"]}'
     )
 
 import operator
