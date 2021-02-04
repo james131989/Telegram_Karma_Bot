@@ -110,7 +110,7 @@ async def karma(_, message):
         m = 0
         for i in fmembers.keys():
             try:
-                output += f"`{(await app.get_chat(i)).username}: {list(fmembers.values())[m]}`\n"
+                output += f"`{(await app.get_chat(i)).username}: {list(fmembers.values())[m]}`\nJoin - @SwiftiesWorld"
             except:
                 pass
             if m == 10:
@@ -120,7 +120,7 @@ async def karma(_, message):
 
     else:
         user_id = message.reply_to_message.from_user.id
-        await message.reply_text(f'Total Points: {members[f"{user_id}"]}')
+        await message.reply_text(f'Total Points: {members[f"{user_id}"]}\nJoin SwiftiesWorld')
 
 
 @app.on_message(filters.command(["backup"]) & filters.user(owner_id))
